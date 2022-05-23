@@ -6,9 +6,10 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
 
 const workload_source = [
         {
-            method: "eth_getBlockByNumber",
+            jsonrpc: '2.0',
+            method: 'eth_getBlockByNumber',
             id: 1,
-            params: ["0xE1AF7F", false]
+            params: ['0xE1AF7F', false]
         }
     ]
 
@@ -44,6 +45,8 @@ const options = {
         console.error(error);
       });
       
+      console.log(data)
+
       req.write(data);
       req.end();
 });

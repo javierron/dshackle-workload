@@ -1,4 +1,4 @@
-const https = require('https');
+const http = require('http');
 const argv = require('yargs/yargs')(process.argv.slice(2))
     .usage('Usage: $0 -host [str] -port [num] -times [num]')
     .demandOption(['host', 'port', 'times'])
@@ -33,7 +33,7 @@ const options = {
 };
 
 [...Array(argv.times).keys()].forEach(_ => {
-    const req = https.request(options, res => {
+    const req = http.request(options, res => {
         console.log(`statusCode: ${res.statusCode}`);
       
         res.on('data', d => {

@@ -20,7 +20,7 @@ const workload_source = [
       id: 1,
       params: [{
         "to": "0x5657a2B688506c4f7408e28A28D7ACA4752b00ce",
-        "value": 1
+        "value": "0x1"
       }, "pending"]
     },
     {
@@ -39,7 +39,7 @@ const workload_source = [
       jsonrpc: '2.0',
       method: 'eth_getBlockByHash',
       id: 1,
-      params: [config.eth.blockhash]
+      params: [config.eth.blockhash, false]
     },
     {
       jsonrpc: '2.0',
@@ -57,13 +57,13 @@ const workload_source = [
       jsonrpc: '2.0',
       method: 'eth_getStorageAt',
       id: 1,
-      params: [config.eth.contractaddress, '0x0']
+      params: [config.eth.contractaddress, '0x0', "latest"]
     },
     {
       jsonrpc: '2.0',
       method: 'eth_getCode',
       id: 1,
-      params: [config.eth.contractaddress]
+      params: [config.eth.contractaddress, 'latest']
     },
     {
       jsonrpc: '2.0',
@@ -75,7 +75,7 @@ const workload_source = [
       jsonrpc: '2.0',
       method: 'eth_getTransactionCount',
       id: 1,
-      params: [config.eth.contractaddress]
+      params: [config.eth.address, 'latest']
     },
     {
       jsonrpc: '2.0',
@@ -129,13 +129,16 @@ const workload_source = [
       jsonrpc: '2.0',
       method: 'eth_feeHistory',
       id: 1,
-      params: ['0xf', 'latest']
+      params: ['0xf', 'latest', [25, 75]],
     },
     {
       jsonrpc: '2.0',
       method: 'eth_getLogs',
       id: 1,
-      params: ['latest']
+      params: [{
+        "fromBlock" : config.eth.blocknumber,
+        "toBlock" : config.eth.blocknumber,
+      }]
     }
   ]
 

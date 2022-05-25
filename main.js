@@ -1,3 +1,4 @@
+const { time } = require('console');
 const http = require('http');
 
 require('toml-require').install();
@@ -25,14 +26,21 @@ const sendRequest = (requestPayload) => {
     const payloadStr = JSON.stringify(requestPayload)
     const req = http.request(options, res => {
 
-      var responseStr = []
+      var responseStr = ""
       res.on('data', d => {
-        responseStr.push(d)
+        responseStr += d
       })
 
       res.on('end', () => {
-        console.log(responseStr)
-        resolve(`${requestPayload.method}: OK - ${res.statusCode}`)
+        // console.log(responseStr)
+
+        const responseJson = JSON.parse(responseStr)
+        if (responseJson.error) {
+          resolve(`${requestPayload.method}: FAIL - ${JSON.stringify(responseJson.error)}`)
+        } else {
+          resolve(`${requestPayload.method}: OK - ${JSON.stringify(responseJson.result)}`.slice(0, 80))
+        }
+
       })
     })
 
@@ -53,12 +61,13 @@ const testPass = () => {
   })
 }
 
-const randomPass = (times) => {
+const randomPass = async times => {
 
-  [...Array(times).keys()].forEach(_ => {
+  for (var i = 0; i < times; i++) {
     const data = requests[getRandomInt(requests.length)]
     sendRequest(data).then(console.log)
-  })
+    await new Promise(resolve => setTimeout(resolve, 10));
+  }
 }
 
 

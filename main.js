@@ -25,11 +25,6 @@ const sendRequest = (requestPayload) => {
     const payloadStr = JSON.stringify(requestPayload)
     const req = http.request(options, res => {
 
-      if (statusCode == 200) {
-
-      } else {
-      }
-
       var responseStr = []
       res.on('data', d => {
         responseStr.push(d)

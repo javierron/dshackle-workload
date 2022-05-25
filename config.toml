@@ -1,0 +1,10 @@
+[connection]
+host = "localhost"
+port = 8080
+
+[eth]
+address = "0x5657a2B688506c4f7408e28A28D7ACA4752b00ce"
+blockhash = "0x704f25ae4ae0ab904e9c7ec44a69efcb4bfd97c764ccbe8cc572c0caeca51d9b"
+blocknumber = "0xe1af7f"
+transactionhash = "0x6bbc88ab26354c42705007ee978076923cfe8cd948a6f22e9233313d71ad5a6a"
+contractadress = "0x7f268357A8c2552623316e2562D90e642bB538E5"

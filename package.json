@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "toml": "^3.0.0",
+    "toml-require": "^1.2.0",
     "yargs": "^17.5.1"
   }
 }

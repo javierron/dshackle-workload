@@ -1,54 +1,86 @@
 const http = require('http');
-const argv = require('yargs/yargs')(process.argv.slice(2))
-    .usage('Usage: $0 -host [str] -port [num] -times [num]')
-    .demandOption(['host', 'port', 'times'])
-    .argv;
 
-const workload_source = [
-        {
-            jsonrpc: '2.0',
-            method: 'eth_getBlockByNumber',
-            id: 1,
-            params: ['0xE1AF7F', false]
-        }
-    ]
+require('toml-require').install();
+const config = require('./config.toml')
+const requests = require('./requests').workload_source
 
 
 const getRandomInt = max => {
-    return Math.floor(Math.random() * max);
+  return Math.floor(Math.random() * max);
 }
 
-const data = JSON.stringify(
-    workload_source[getRandomInt(workload_source.length)]
-);
+const sendRequest = (requestPayload) => {
+  return new Promise((resolve, _) => {
 
-const options = {
-  hostname: argv.host,
-  port: argv.port,
-  path: '/eth',
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-};
+    const options = {
+      hostname: config.connection.host,
+      port: config.connection.port,
+      path: '/eth',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }
 
-[...Array(argv.times).keys()].forEach(_ => {
+    const payloadStr = JSON.stringify(requestPayload)
     const req = http.request(options, res => {
-        console.log(`statusCode: ${res.statusCode}`);
-      
-        res.on('data', d => {
-          process.stdout.write(d);
-        });
-      });
-      
-      req.on('error', error => {
-        console.error(error);
-      });
-      
-      console.log(data)
 
-      req.write(data);
-      req.end();
-});
+      if (statusCode == 200) {
+
+      } else {
+      }
+
+      var responseStr = []
+      res.on('data', d => {
+        responseStr.push(d)
+      })
+
+      res.on('end', () => {
+        // console.log(responseStr)
+        resolve(`${requestPayload.method}: OK`)
+      })
+    })
+
+    req.on('error', error => {
+      // console.error(error)
+      resolve(`${requestPayload.method}: FAIL - ${error}`)
+    })
+
+    req.write(payloadStr)
+    req.end()
+  })
+
+}
+
+const testPass = () => {
+  requests.forEach(item => {
+    sendRequest(item).then(console.log)
+  })
+}
+
+const randomPass = (times) => {
+
+  [...Array(times).keys()].forEach(_ => {
+    const data = requests[getRandomInt(requests.length)]
+    sendRequest(data).then(console.log)
+  })
+}
 
 
+// main
+require('yargs/yargs')(process.argv.slice(2))
+  .usage('usage: $0 <command>')
+  .command('test', 'test the json payloads', argv => {
+    testPass()
+  })
+  .command({
+    command: 'random <times>',
+    desc: 'execute random workload',
+    builder: yargs => yargs.default('times', 10),
+    handler: argv => {
+      randomPass(argv.times)
+    }
+  })
+  .demandCommand()
+  .help()
+  .argv

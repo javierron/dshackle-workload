@@ -31,13 +31,13 @@ const sendRequest = (requestPayload) => {
       })
 
       res.on('end', () => {
-        // console.log(responseStr)
-        resolve(`${requestPayload.method}: OK`)
+        console.log(responseStr)
+        resolve(`${requestPayload.method}: OK - ${res.statusCode}`)
       })
     })
 
     req.on('error', error => {
-      // console.error(error)
+      // console.log(error)
       resolve(`${requestPayload.method}: FAIL - ${error}`)
     })
 

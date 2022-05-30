@@ -92,7 +92,7 @@ const randomPass = async (target, times) => {
 }
 
 const readBlockExp = async (target, times) => {
-  const file = fs.createWriteStream('./data/block-read-random.csv')
+  const file = fs.createWriteStream(`./data/block-read-${target}-random.csv`)
   for (var i = 0; i < times; i++) {
     const data = requests[0]
     data.params[0] = `0x${randomInt(13000000).toString(16)}`
@@ -103,7 +103,7 @@ const readBlockExp = async (target, times) => {
 }
 
 const sequentialPass = async (target, limit) => {
-  const file = fs.createWriteStream('./data/block-read-sequential.csv')
+  const file = fs.createWriteStream(`./data/block-read-${target}-sequential.csv`)
   console.log(limit)
   for (var i = 0; i < limit; i++) {
     const data = requests[0]
@@ -114,7 +114,7 @@ const sequentialPass = async (target, limit) => {
 }
 
 const cachePass = async (target, limit) => {
-  const file = fs.createWriteStream('./data/block-read-cache.csv')
+  const file = fs.createWriteStream(`./data/block-read-${target}-cache.csv`)
   const loops = limit / 100
   for (var i = 0; i < loops; i++) {
     const data = requests[0]

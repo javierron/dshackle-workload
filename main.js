@@ -1,4 +1,5 @@
-const { time } = require('console');
+const { randomInt } = require('crypto');
+const fs = require('fs')
 const http = require('http');
 
 require('toml-require').install();
@@ -10,7 +11,7 @@ const getRandomInt = max => {
   return Math.floor(Math.random() * max);
 }
 
-const sendRequest = (requestPayload) => {
+const sendRequest = (requestPayload, timed, file) => {
   return new Promise((resolve, _) => {
 
     const options = {
@@ -24,15 +25,22 @@ const sendRequest = (requestPayload) => {
     }
 
     const payloadStr = JSON.stringify(requestPayload)
+
+    var startTime = process.hrtime()
     const req = http.request(options, res => {
 
       var responseStr = ""
+
       res.on('data', d => {
         responseStr += d
       })
 
       res.on('end', () => {
         // console.log(responseStr)
+        if (timed) {
+          endTime = process.hrtime(startTime)
+          file.write(`${requestPayload.params[0]},${endTime[1]}\n`)
+        }
 
         const responseJson = JSON.parse(responseStr)
         if (responseJson.error) {
@@ -48,6 +56,7 @@ const sendRequest = (requestPayload) => {
       // console.log(error)
       resolve(`${requestPayload.method}: FAIL - ${error}`)
     })
+    
 
     req.write(payloadStr)
     req.end()
@@ -70,6 +79,17 @@ const randomPass = async times => {
   }
 }
 
+const readBlockExp = async times => {
+  const file = fs.createWriteStream('./data/latency.csv')
+  for (var i = 0; i < times; i++) {
+    const data = requests[0]
+    data.params = [`0x${randomInt(13000000).toString(16)}`, false]
+    sendRequest(data, true, file).then(console.log)
+    await new Promise(resolve => setTimeout(resolve, 20));
+  }
+  file.close()
+}
+
 
 // main
 require('yargs/yargs')(process.argv.slice(2))
@@ -83,6 +103,14 @@ require('yargs/yargs')(process.argv.slice(2))
     builder: yargs => yargs.default('times', 10),
     handler: argv => {
       randomPass(argv.times)
+    }
+  })
+  .command({
+    command: 'readexp <times>',
+    desc: 'read block experiment',
+    builder: yargs => yargs.default('times', 10),
+    handler: argv => {
+      readBlockExp(argv.times)
     }
   })
   .demandCommand()

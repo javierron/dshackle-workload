@@ -104,6 +104,7 @@ const readBlockExp = async (target, times) => {
 
 const sequentialPass = async (target, limit) => {
   const file = fs.createWriteStream('./data/block-read-sequential.csv')
+  console.log(limit)
   for (var i = 0; i < limit; i++) {
     const data = requests[0]
     data.params[0] = `0x${i.toString(16)}`
@@ -160,7 +161,7 @@ require('yargs/yargs')(process.argv.slice(2))
       .demandOption(['limit', 'target']),
 
     handler: argv => {
-      sequentialPass(argv.target, argv.times)
+      sequentialPass(argv.target, argv.limit)
     }
   })
   .command({
@@ -169,7 +170,7 @@ require('yargs/yargs')(process.argv.slice(2))
     builder: yargs => yargs
       .default('times', 100)
       .choices('target', ['geth', 'besu', 'dshackle'])
-      .demandOption(['limit', 'target']),
+      .demandOption(['times', 'target']),
     handler: argv => {
       cachePass(argv.target, argv.times)
     }
@@ -182,7 +183,7 @@ require('yargs/yargs')(process.argv.slice(2))
       .choices('target', ['geth', 'besu', 'dshackle'])
       .demandOption(['times', 'target']),
     handler: argv => {
-      readBlockExp(argv.times)
+      readBlockExp(argv.target, argv.times)
     }
   })
   .demandCommand()

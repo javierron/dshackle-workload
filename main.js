@@ -146,7 +146,7 @@ require('yargs/yargs')(process.argv.slice(2))
     builder: yargs => yargs
       .default('times', 100)
       .choices('target', ['geth', 'besu', 'dshackle'])
-      .demandOption(['limit', 'target']),
+      .demandOption(['times', 'target']),
     handler: argv => {
       randomPass(argv.target, argv.times)
     }
@@ -175,7 +175,7 @@ require('yargs/yargs')(process.argv.slice(2))
     }
   })
   .command({
-    command: 'readblocks <times>',
+    command: 'readblocks <times> <target>',
     desc: 'read block experiment',
     builder: yargs => yargs
       .default('times', 10)

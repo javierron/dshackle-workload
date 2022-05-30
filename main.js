@@ -33,7 +33,7 @@ const sendRequest = (target, requestPayload, file) => {
     const options = {
       hostname: connection.host,
       port: connection.port,
-      path: '/eth',
+      path: connection.path,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

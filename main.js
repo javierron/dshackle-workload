@@ -96,8 +96,7 @@ const readBlockExp = async (target, times) => {
   for (var i = 0; i < times; i++) {
     const data = requests[0]
     data.params[0] = `0x${randomInt(13000000).toString(16)}`
-    sendRequest(target, data, file).then(console.log)
-    await new Promise(resolve => setTimeout(resolve, 20));
+    await sendRequest(target, data, file).then(console.log)
   }
   file.close()
 }

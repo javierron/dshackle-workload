@@ -84,14 +84,14 @@ const testPass = target => {
   })
 }
 
-const randomPass = async (times, target) => {
+const randomPass = async (target, times) => {
   for (var i = 0; i < times; i++) {
     const data = requests[getRandomInt(requests.length)]
     await sendRequest(target, data).then(console.log)
   }
 }
 
-const readBlockExp = async (times, target) => {
+const readBlockExp = async (target, times) => {
   const file = fs.createWriteStream('./data/block-read-random.csv')
   for (var i = 0; i < times; i++) {
     const data = requests[0]
@@ -141,7 +141,7 @@ require('yargs/yargs')(process.argv.slice(2))
     }
   })
   .command({
-    command: 'random <times> <target>',
+    command: 'random',
     desc: 'execute random workload',
     builder: yargs => yargs
       .default('times', 100)
@@ -152,7 +152,7 @@ require('yargs/yargs')(process.argv.slice(2))
     }
   })
   .command({
-    command: 'sequential <limit> <target>',
+    command: 'sequential',
     desc: 'execute sequential workload',
     builder: yargs => yargs
       .default('limit', 100)
@@ -164,7 +164,7 @@ require('yargs/yargs')(process.argv.slice(2))
     }
   })
   .command({
-    command: 'cache <limit> <target>',
+    command: 'cache',
     desc: 'execute cache-friendly workload',
     builder: yargs => yargs
       .default('times', 100)
@@ -175,7 +175,7 @@ require('yargs/yargs')(process.argv.slice(2))
     }
   })
   .command({
-    command: 'readblocks <times> <target>',
+    command: 'readblocks',
     desc: 'read block experiment',
     builder: yargs => yargs
       .default('times', 10)

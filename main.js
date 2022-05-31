@@ -62,7 +62,7 @@ const sendRequest = (target, requestPayload, file) => {
       res.on('end', () => {
         if (file) {
           endTime = process.hrtime(startTime)
-          file.write(`${requestPayload.method},${requestPayload.params[0]},${endTime[1]}\n`)
+          file.write(`${requestPayload.method},${requestPayload.params[0] || null},${endTime[1]}\n`)
         }
 
         const responseJson = JSON.parse(responseStr)
@@ -92,8 +92,8 @@ const testPass = target => {
   })
 }
 
-const randomPass = async (target, times) => {
-  const file = fs.createWriteStream(`./data/block-read-${target}-random.csv`)
+const allMethodsRandom = async (target, times) => {
+  const file = fs.createWriteStream(`./data/all-methods-${target}-random.csv`)
   for (var i = 0; i < times; i++) {
     const data = requests[getRandomInt(requests.length)]
     await sendRequest(target, data, file).then(debugPrint)
@@ -158,7 +158,7 @@ require('yargs/yargs')(process.argv.slice(2))
       .choices('target', ['geth', 'besu', 'dshackle'])
       .demandOption(['times', 'target']),
     handler: argv => {
-      randomPass(argv.target, argv.times)
+      allMethodsRandom(argv.target, argv.times)
     }
   })
   .command({

@@ -3,6 +3,14 @@ const fs = require('fs')
 const http = require('http');
 
 require('toml-require').install();
+const debug = require('./config.toml').debug
+
+const debugPrint = str => {
+  if(debug){
+    console.log(str)
+  }
+}
+
 const requests = require('./requests').workload_source
 
 const urls = {
@@ -54,7 +62,7 @@ const sendRequest = (target, requestPayload, file) => {
       res.on('end', () => {
         if (file) {
           endTime = process.hrtime(startTime)
-          file.write(`${requestPayload.params[0]},${endTime[1]}\n`)
+          file.write(`${requestPayload.method},${requestPayload.params[0]},${endTime[1]}\n`)
         }
 
         const responseJson = JSON.parse(responseStr)
@@ -80,15 +88,17 @@ const sendRequest = (target, requestPayload, file) => {
 
 const testPass = target => {
   requests.forEach(item => {
-    sendRequest(target, item).then(console.log)
+    sendRequest(target, item).then(debugPrint)
   })
 }
 
 const randomPass = async (target, times) => {
+  const file = fs.createWriteStream(`./data/block-read-${target}-random.csv`)
   for (var i = 0; i < times; i++) {
     const data = requests[getRandomInt(requests.length)]
-    await sendRequest(target, data).then(console.log)
+    await sendRequest(target, data, file).then(debugPrint)
   }
+  file.close()
 }
 
 const readBlockExp = async (target, times) => {
@@ -96,30 +106,30 @@ const readBlockExp = async (target, times) => {
   for (var i = 0; i < times; i++) {
     const data = requests[0]
     data.params[0] = `0x${randomInt(13000000).toString(16)}`
-    await sendRequest(target, data, file).then(console.log)
+    await sendRequest(target, data, file).then(debugPrint)
   }
   file.close()
 }
 
 const sequentialPass = async (target, limit) => {
   const file = fs.createWriteStream(`./data/block-read-${target}-sequential.csv`)
-  console.log(limit)
   for (var i = 0; i < limit; i++) {
     const data = requests[0]
     data.params[0] = `0x${i.toString(16)}`
-    await sendRequest(target, data, file).then(console.log)
+    await sendRequest(target, data, file).then(debugPrint)
   }
   file.close()
 }
 
 const cachePass = async (target, limit) => {
   const file = fs.createWriteStream(`./data/block-read-${target}-cache.csv`)
-  const loops = limit / 100
-  for (var i = 0; i < loops; i++) {
+  const jump = 100
+  const repeat = 100
+  for (var i = 0; i < limit; i += jump) {
     const data = requests[0]
-    data.params[0] = `0x${i.toString(16)}`
-    for (var j = 0; j < 100; j++) {
-      await sendRequest(target, data, file).then(console.log)
+    data.params[0] = `0x${(i * jump).toString(16)}`
+    for (var j = 0; j < repeat; j++) {
+      await sendRequest(target, data, file).then(debugPrint)
     }
   }
   file.close()
@@ -141,7 +151,7 @@ require('yargs/yargs')(process.argv.slice(2))
     }
   })
   .command({
-    command: 'random',
+    command: 'all-methods',
     desc: 'execute random workload',
     builder: yargs => yargs
       .default('times', 100)
@@ -167,18 +177,19 @@ require('yargs/yargs')(process.argv.slice(2))
     command: 'cache',
     desc: 'execute cache-friendly workload',
     builder: yargs => yargs
-      .default('times', 100)
+      .default('limit', 100)
       .choices('target', ['geth', 'besu', 'dshackle'])
-      .demandOption(['times', 'target']),
+      .demandOption(['limit', 'target']),
     handler: argv => {
-      cachePass(argv.target, argv.times)
+      cachePass(argv.target, argv.limit)
     }
   })
   .command({
-    command: 'readblocks',
+    command: 'random',
     desc: 'read block experiment',
     builder: yargs => yargs
       .default('times', 10)
+      .alias('times', 'limit')
       .choices('target', ['geth', 'besu', 'dshackle'])
       .demandOption(['times', 'target']),
     handler: argv => {

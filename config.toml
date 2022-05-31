@@ -1,6 +1,4 @@
-[connection]
-host = "172.17.0.2"
-port = 8080
+debug = false
 
 [eth]
 address = "0x5657a2B688506c4f7408e28A28D7ACA4752b00ce"

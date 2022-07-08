@@ -1,4 +1,4 @@
-debug = false
+debug = true
 
 [eth]
 address = "0x5657a2B688506c4f7408e28A28D7ACA4752b00ce"

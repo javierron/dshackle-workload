@@ -1,0 +1,11 @@
+{
+    "experiment_name": "Error Models for Resilience Benchmarking Experiments",
+    "experiments": [
+      {
+        "syscall_name": "accept4",
+        "failure_rate": 0.6,
+        "error_code": "-EAGAIN",
+        "experiment_duration": 300
+      }
+    ]
+  }

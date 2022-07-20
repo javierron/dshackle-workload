@@ -1,0 +1,209 @@
+INFO [07-18|15:36:50.023] Starting Geth on Ethereum mainnet... 
+INFO [07-18|15:36:50.025] Bumping default cache on mainnet         provided=1024 updated=4096
+INFO [07-18|15:36:50.030] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [07-18|15:36:50.034] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+INFO [07-18|15:36:50.041] Set global gas cap                       cap=50,000,000
+INFO [07-18|15:36:50.045] Allocated trie memory caches             clean=614.00MiB dirty=1024.00MiB
+INFO [07-18|15:36:50.046] Allocated cache and file handles         database=/home/javier/go-ethereum/data-dir/geth/chaindata cache=2.00GiB handles=524,288
+INFO [07-18|15:36:51.311] Opened ancient database                  database=/home/javier/go-ethereum/data-dir/geth/chaindata/ancient readonly=false
+INFO [07-18|15:36:51.318]  
+INFO [07-18|15:36:51.318] --------------------------------------------------------------------------------------------------------------------------------------------------------- 
+INFO [07-18|15:36:51.318] Chain ID:  1 (mainnet) 
+INFO [07-18|15:36:51.318] Consensus: Ethash (proof-of-work) 
+INFO [07-18|15:36:51.318]  
+INFO [07-18|15:36:51.318] Pre-Merge hard forks: 
+INFO [07-18|15:36:51.318]  - Homestead:                   1150000  (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/homestead.md) 
+INFO [07-18|15:36:51.318]  - DAO Fork:                    1920000  (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/dao-fork.md) 
+INFO [07-18|15:36:51.318]  - Tangerine Whistle (EIP 150): 2463000  (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/tangerine-whistle.md) 
+INFO [07-18|15:36:51.318]  - Spurious Dragon/1 (EIP 155): 2675000  (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/spurious-dragon.md) 
+INFO [07-18|15:36:51.318]  - Spurious Dragon/2 (EIP 158): 2675000  (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/spurious-dragon.md) 
+INFO [07-18|15:36:51.318]  - Byzantium:                   4370000  (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/byzantium.md) 
+INFO [07-18|15:36:51.319]  - Constantinople:              7280000  (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/constantinople.md) 
+INFO [07-18|15:36:51.319]  - Petersburg:                  7280000  (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/petersburg.md) 
+INFO [07-18|15:36:51.319]  - Istanbul:                    9069000  (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/istanbul.md) 
+INFO [07-18|15:36:51.319]  - Muir Glacier:                9200000  (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/muir-glacier.md) 
+INFO [07-18|15:36:51.319]  - Berlin:                      12244000 (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/berlin.md) 
+INFO [07-18|15:36:51.319]  - London:                      12965000 (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/london.md) 
+INFO [07-18|15:36:51.319]  - Arrow Glacier:               13773000 (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/arrow-glacier.md) 
+INFO [07-18|15:36:51.319]  - Gray Glacier:                15050000 (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/gray-glacier.md) 
+INFO [07-18|15:36:51.319]  
+INFO [07-18|15:36:51.319] Merge not configured! 
+INFO [07-18|15:36:51.319]  - Hard-fork specification: https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/paris.md) 
+INFO [07-18|15:36:51.319] --------------------------------------------------------------------------------------------------------------------------------------------------------- 
+INFO [07-18|15:36:51.319]  
+INFO [07-18|15:36:51.895] Disk storage enabled for ethash caches   dir=/home/javier/go-ethereum/data-dir/geth/ethash count=3
+INFO [07-18|15:36:51.895] Disk storage enabled for ethash DAGs     dir=/home/javier/.ethash count=2
+INFO [07-18|15:36:51.898] Initialising Ethereum protocol           network=1 dbversion=8
+INFO [07-18|15:36:53.152] Loaded most recent local header          number=15,167,209 hash=6d98ab..14188d td=54,290,369,001,984,801,131,243 age=1h2m53s
+INFO [07-18|15:36:53.152] Loaded most recent local full block      number=15,167,209 hash=6d98ab..14188d td=54,290,369,001,984,801,131,243 age=1h2m53s
+INFO [07-18|15:36:53.152] Loaded most recent local fast block      number=15,167,209 hash=6d98ab..14188d td=54,290,369,001,984,801,131,243 age=1h2m53s
+INFO [07-18|15:36:53.153] Loaded last fast-sync pivot marker       number=15,067,928
+WARN [07-18|15:36:53.156] Head state missing, repairing            number=15,167,209 hash=6d98ab..14188d snaproot=51f2c8..5e8cf0
+INFO [07-18|15:36:53.803] Loaded most recent local header          number=15,167,209 hash=6d98ab..14188d td=54,290,369,001,984,801,131,243 age=1h2m53s
+INFO [07-18|15:36:53.803] Loaded most recent local full block      number=15,167,053 hash=6e268e..c1de88 td=54,288,501,842,395,123,699,070 age=1h37m34s
+INFO [07-18|15:36:53.803] Loaded most recent local fast block      number=15,167,209 hash=6d98ab..14188d td=54,290,369,001,984,801,131,243 age=1h2m53s
+INFO [07-18|15:36:53.803] Loaded last fast-sync pivot marker       number=15,067,928
+WARN [07-18|15:36:53.808] Enabling snapshot recovery               chainhead=15,167,053 diskbase=15,167,152
+WARN [07-18|15:36:53.873] Loaded snapshot journal                  diskroot=51f2c8..5e8cf0 diffs=unmatched
+WARN [07-18|15:36:53.873] Snapshot is not continuous with chain    snaproot=51f2c8..5e8cf0 chainroot=3cd747..538cd6
+INFO [07-18|15:36:53.873] Loaded local transaction journal         transactions=0 dropped=0
+INFO [07-18|15:36:53.873] Regenerated local transaction journal    transactions=0 accounts=0
+WARN [07-18|15:36:53.873] Switch sync mode from snap sync to full sync 
+INFO [07-18|15:36:53.874] Gasprice oracle is ignoring threshold set threshold=2
+WARN [07-18|15:36:53.874] Unclean shutdown detected                booted=2022-07-18T13:46:04+0000 age=1h50m49s
+WARN [07-18|15:36:53.874] Unclean shutdown detected                booted=2022-07-18T13:49:29+0000 age=1h47m24s
+WARN [07-18|15:36:53.874] Unclean shutdown detected                booted=2022-07-18T13:54:58+0000 age=1h41m55s
+WARN [07-18|15:36:53.874] Unclean shutdown detected                booted=2022-07-18T14:40:45+0000 age=56m8s
+WARN [07-18|15:36:53.874] Unclean shutdown detected                booted=2022-07-18T15:11:53+0000 age=25m
+WARN [07-18|15:36:53.874] Unclean shutdown detected                booted=2022-07-18T15:19:19+0000 age=17m34s
+WARN [07-18|15:36:53.874] Unclean shutdown detected                booted=2022-07-18T15:26:51+0000 age=10m2s
+WARN [07-18|15:36:53.874] Unclean shutdown detected                booted=2022-07-18T15:27:23+0000 age=9m30s
+INFO [07-18|15:36:53.875] Starting peer-to-peer node               instance=Geth/v1.10.20-stable-8f2416a8/linux-amd64/go1.18.1
+INFO [07-18|15:36:53.922] New local node record                    seq=1,656,674,483,479 id=951d36f91f683294 ip=127.0.0.1 udp=30303 tcp=30303
+INFO [07-18|15:36:53.923] Started P2P networking                   self=enode://19ba02adf926cb3e760e68b141daeecfe59f8bf655a56dfa21e6d7494a13aaf0f352cf663cf24b7b471dc42ec1434c27adeb535a7d34239149f66041b9a00d7b@127.0.0.1:30303
+INFO [07-18|15:36:53.924] IPC endpoint opened                      url=/home/javier/go-ethereum/data-dir/geth.ipc
+INFO [07-18|15:36:53.925] HTTP server started                      endpoint=172.17.0.1:8546 auth=false prefix= cors= vhosts=localhost
+INFO [07-18|15:36:59.465] New local node record                    seq=1,656,674,483,480 id=951d36f91f683294 ip=130.237.222.185 udp=30303 tcp=30303
+INFO [07-18|15:37:04.063] Looking for peers                        peercount=0 tried=21 static=0
+INFO [07-18|15:37:04.865] Block synchronisation started 
+WARN [07-18|15:37:04.865] Synchronisation failed, retrying         err="peer is unknown or unhealthy"
+INFO [07-18|15:37:14.145] Looking for peers                        peercount=1 tried=24 static=0
+WARN [07-18|15:37:17.980] Synchronisation failed, dropping peer    peer=fa19e31ddc26d0706aded022967ddd96c5034cefdc0fc382e6f58ca2aaff91d4 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:37:24.228] Looking for peers                        peercount=2 tried=34 static=0
+INFO [07-18|15:37:33.694] Downloader queue stats                   receiptTasks=0 blockTasks=96 itemSize=21.87KiB throttle=8192
+INFO [07-18|15:37:34.286] Looking for peers                        peercount=3 tried=31 static=0
+INFO [07-18|15:37:34.449] Importing sidechain segment              start=15,167,181 end=15,167,391
+INFO [07-18|15:37:36.204] Extend chain                             add=128 number=15,167,181 hash=dd2235..686e3f
+INFO [07-18|15:37:42.535] Imported new chain segment               blocks=6 txs=1401 mgas=97.740 elapsed=8.086s mgasps=12.088 number=15,167,186 hash=c78e2b..bd964b age=1h7m15s  dirty=9.70MiB
+INFO [07-18|15:37:44.323] Looking for peers                        peercount=3 tried=37 static=0
+INFO [07-18|15:37:50.736] Imported new chain segment               blocks=12 txs=1904 mgas=146.684 elapsed=8.201s mgasps=17.886 number=15,167,198 hash=aea796..284a61 age=1h5m59s  dirty=25.05MiB
+ERROR[07-18|15:37:52.636] Expired request does not exist           peer=f2570b4089466fe3b4485e282278dbf22aeb62887ade3f3097debc40d5219515
+INFO [07-18|15:37:54.562] Looking for peers                        peercount=3 tried=33 static=0
+ERROR[07-18|15:37:57.236] Expired request does not exist           peer=de76c1da34ecf0f054bc0c8adf4c18f9c113ca14023459df8ee7d71f4a578e9c
+INFO [07-18|15:37:58.801] Imported new chain segment               blocks=12 txs=2143 mgas=163.423 elapsed=8.065s mgasps=20.263 number=15,167,210 hash=39f52f..4b6fcd age=1h3m51s  dirty=43.30MiB
+INFO [07-18|15:38:04.563] Looking for peers                        peercount=2 tried=38 static=0
+INFO [07-18|15:38:07.001] Imported new chain segment               blocks=10 txs=2244 mgas=166.467 elapsed=8.200s mgasps=20.300 number=15,167,220 hash=76d21f..836ad6 age=1h1m3s   dirty=61.49MiB
+INFO [07-18|15:38:14.613] Looking for peers                        peercount=3 tried=33 static=0
+INFO [07-18|15:38:15.705] Imported new chain segment               blocks=16 txs=2891 mgas=219.442 elapsed=8.703s mgasps=25.212 number=15,167,236 hash=b5e6c6..251fc2 age=58m38s   dirty=85.00MiB
+INFO [07-18|15:38:23.843] Imported new chain segment               blocks=16 txs=2949 mgas=218.006 elapsed=8.137s mgasps=26.789 number=15,167,252 hash=47920e..d59298 age=55m4s    dirty=109.56MiB
+INFO [07-18|15:38:25.229] Looking for peers                        peercount=3 tried=38 static=0
+WARN [07-18|15:38:29.787] Snapshot extension registration failed   peer=bd13ea3a err="peer connected on snap without compatible eth support"
+INFO [07-18|15:38:32.155] Imported new chain segment               blocks=11 txs=3244 mgas=230.849 elapsed=8.311s mgasps=27.774 number=15,167,263 hash=c823be..e3126c age=51m25s   dirty=135.52MiB
+INFO [07-18|15:38:35.229] Looking for peers                        peercount=3 tried=35 static=0
+INFO [07-18|15:38:40.235] Imported new chain segment               blocks=20 txs=3989 mgas=286.033 elapsed=8.080s mgasps=35.398 number=15,167,283 hash=049498..734239 age=46m52s   dirty=166.75MiB
+INFO [07-18|15:38:45.229] Looking for peers                        peercount=4 tried=28 static=0
+INFO [07-18|15:38:48.413] Imported new chain segment               blocks=19 txs=3392 mgas=269.652 elapsed=8.177s mgasps=32.974 number=15,167,302 hash=6150de..e247fe age=44m15s   dirty=195.46MiB
+INFO [07-18|15:38:55.461] Looking for peers                        peercount=3 tried=33 static=0
+INFO [07-18|15:38:57.030] Imported new chain segment               blocks=22 txs=4060 mgas=321.308 elapsed=8.616s mgasps=37.289 number=15,167,324 hash=6aca69..765b2a age=40m36s   dirty=222.31MiB
+INFO [07-18|15:39:05.289] Imported new chain segment               blocks=43 txs=5435 mgas=825.717 elapsed=8.259s mgasps=99.974 number=15,167,367 hash=9207c7..38d2a3 age=33m56s   dirty=227.12MiB
+INFO [07-18|15:39:05.565] Looking for peers                        peercount=2 tried=34 static=0
+INFO [07-18|15:39:13.118] Imported new chain segment               blocks=24 txs=4765 mgas=318.750 elapsed=7.828s mgasps=40.716 number=15,167,391 hash=66e413..a2ea1c age=28m9s    dirty=233.19MiB
+INFO [07-18|15:39:13.118] Downloader queue stats                   receiptTasks=0 blockTasks=0  itemSize=93.91KiB throttle=2792
+INFO [07-18|15:39:13.159] Unindexed transactions                   blocks=14 txs=2151 tail=12,817,392 elapsed=41.090ms
+INFO [07-18|15:39:15.896] Looking for peers                        peercount=3 tried=9  static=0
+INFO [07-18|15:39:21.304] Imported new chain segment               blocks=25 txs=4932 mgas=346.766 elapsed=8.184s   mgasps=42.369 number=15,167,416 hash=0f7ac9..944938 age=23m1s    dirty=244.88MiB
+INFO [07-18|15:39:25.897] Looking for peers                        peercount=3 tried=35 static=0
+INFO [07-18|15:39:29.565] Imported new chain segment               blocks=25 txs=4853 mgas=448.141 elapsed=8.261s   mgasps=54.247 number=15,167,441 hash=fcf118..b77051 age=16m11s   dirty=257.08MiB
+INFO [07-18|15:39:36.805] Looking for peers                        peercount=4 tried=26 static=0
+INFO [07-18|15:39:37.975] Imported new chain segment               blocks=22 txs=4800 mgas=325.456 elapsed=8.410s   mgasps=38.696 number=15,167,463 hash=ab826d..177856 age=9m32s    dirty=277.60MiB
+INFO [07-18|15:39:46.329] Imported new chain segment               blocks=23 txs=5887 mgas=279.064 elapsed=8.353s   mgasps=33.407 number=15,167,486 hash=711181..4f73d1 age=6m5s     dirty=295.53MiB
+INFO [07-18|15:39:47.112] Looking for peers                        peercount=2 tried=48 static=0
+INFO [07-18|15:39:51.447] Deep froze chain segment                 blocks=115 elapsed=130.292ms number=15,077,492 hash=774bf5..d6f7a2
+INFO [07-18|15:39:53.563] Imported new chain segment               blocks=11  txs=3794 mgas=210.189 elapsed=7.233s    mgasps=29.056 number=15,167,497 hash=28be80..a9d6b3 age=3m47s    dirty=312.36MiB
+WARN [07-18|15:39:53.563] Synchronisation failed, dropping peer    peer=de76c1da34ecf0f054bc0c8adf4c18f9c113ca14023459df8ee7d71f4a578e9c err="action from bad peer ignored: header request failed: timeout"
+INFO [07-18|15:39:53.617] Unindexed transactions                   blocks=106 txs=20335 tail=12,817,498 elapsed=53.573ms
+INFO [07-18|15:39:57.140] Looking for peers                        peercount=3 tried=34 static=0
+WARN [07-18|15:40:06.679] Synchronisation failed, dropping peer    peer=fa19e31ddc26d0706aded022967ddd96c5034cefdc0fc382e6f58ca2aaff91d4 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:40:07.242] Looking for peers                        peercount=2 tried=40 static=0
+INFO [07-18|15:40:17.572] Looking for peers                        peercount=2 tried=37 static=0
+INFO [07-18|15:40:27.574] Looking for peers                        peercount=3 tried=34 static=0
+INFO [07-18|15:40:37.589] Looking for peers                        peercount=3 tried=39 static=0
+WARN [07-18|15:40:37.693] Snapshot extension registration failed   peer=e0963484 err="peer connected on snap without compatible eth support"
+INFO [07-18|15:40:47.696] Looking for peers                        peercount=3 tried=38 static=0
+INFO [07-18|15:40:51.465] Deep froze chain segment                 blocks=5   elapsed=17.968ms  number=15,077,497 hash=e396e2..cb3eb0
+WARN [07-18|15:40:54.244] Snapshot extension registration failed   peer=f343148b err="peer connected on snap without compatible eth support"
+WARN [07-18|15:40:55.674] Snapshot extension registration failed   peer=e1ea8ede err="peer connected on snap without compatible eth support"
+INFO [07-18|15:40:57.807] Looking for peers                        peercount=3 tried=27 static=0
+INFO [07-18|15:41:07.910] Looking for peers                        peercount=3 tried=45 static=0
+INFO [07-18|15:41:17.910] Looking for peers                        peercount=4 tried=37 static=0
+WARN [07-18|15:41:20.051] Synchronisation failed, dropping peer    peer=32a9ef88f43b8f51ef59ea2a5cb87734289ba32c5702224fa7dd1af5caafb8af err=timeout
+INFO [07-18|15:41:28.245] Looking for peers                        peercount=5 tried=39 static=0
+WARN [07-18|15:41:28.919] Snapshot extension registration failed   peer=635fb2d3 err="peer connected on snap without compatible eth support"
+WARN [07-18|15:41:30.607] Synchronisation failed, dropping peer    peer=fa19e31ddc26d0706aded022967ddd96c5034cefdc0fc382e6f58ca2aaff91d4 err="action from bad peer ignored: returned headers 0 != requested 1"
+WARN [07-18|15:41:30.607] Synchronisation failed, retrying         err="peer is unknown or unhealthy"
+INFO [07-18|15:41:38.246] Looking for peers                        peercount=5 tried=26 static=0
+INFO [07-18|15:41:48.580] Looking for peers                        peercount=5 tried=37 static=0
+WARN [07-18|15:41:56.753] Snapshot extension registration failed   peer=e1ea8ede err="peer connected on snap without compatible eth support"
+INFO [07-18|15:42:08.587] Looking for peers                        peercount=5 tried=25 static=0
+INFO [07-18|15:42:18.722] Looking for peers                        peercount=4 tried=36 static=0
+INFO [07-18|15:42:28.920] Looking for peers                        peercount=5 tried=42 static=0
+WARN [07-18|15:42:31.132] Synchronisation failed, dropping peer    peer=302e88cf2fba4a6de2ec13bb056aa5c8b1ea4edb3aeaefdff4da036fcda0ce26 err=timeout
+WARN [07-18|15:42:34.247] Synchronisation failed, dropping peer    peer=fa19e31ddc26d0706aded022967ddd96c5034cefdc0fc382e6f58ca2aaff91d4 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:42:38.922] Looking for peers                        peercount=4 tried=42 static=0
+WARN [07-18|15:42:47.363] Synchronisation failed, dropping peer    peer=fa19e31ddc26d0706aded022967ddd96c5034cefdc0fc382e6f58ca2aaff91d4 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:42:49.579] Looking for peers                        peercount=4 tried=15 static=0
+INFO [07-18|15:42:59.583] Looking for peers                        peercount=4 tried=43 static=0
+WARN [07-18|15:43:03.980] Synchronisation failed, dropping peer    peer=c542baf283386868d20135d5c08ba993e9f8c7c026bcb8d8f39e23a2d53cfc69 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:43:09.588] Looking for peers                        peercount=2 tried=26 static=0
+INFO [07-18|15:43:20.589] Looking for peers                        peercount=1 tried=43 static=0
+INFO [07-18|15:43:30.593] Looking for peers                        peercount=3 tried=42 static=0
+WARN [07-18|15:43:34.419] Snapshot extension registration failed   peer=decab1a9 err="peer connected on snap without compatible eth support"
+WARN [07-18|15:43:38.977] Synchronisation failed, dropping peer    peer=c542baf283386868d20135d5c08ba993e9f8c7c026bcb8d8f39e23a2d53cfc69 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:43:40.594] Looking for peers                        peercount=2 tried=28 static=0
+INFO [07-18|15:43:50.594] Looking for peers                        peercount=3 tried=33 static=0
+WARN [07-18|15:43:52.093] Synchronisation failed, dropping peer    peer=fa19e31ddc26d0706aded022967ddd96c5034cefdc0fc382e6f58ca2aaff91d4 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:44:00.595] Looking for peers                        peercount=1 tried=23 static=0
+INFO [07-18|15:44:11.299] Looking for peers                        peercount=2 tried=38 static=0
+WARN [07-18|15:44:13.974] Synchronisation failed, dropping peer    peer=c542baf283386868d20135d5c08ba993e9f8c7c026bcb8d8f39e23a2d53cfc69 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:44:21.490] Looking for peers                        peercount=3 tried=46 static=0
+WARN [07-18|15:44:27.090] Synchronisation failed, dropping peer    peer=fa19e31ddc26d0706aded022967ddd96c5034cefdc0fc382e6f58ca2aaff91d4 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:44:31.948] Looking for peers                        peercount=1 tried=26 static=0
+WARN [07-18|15:44:35.985] Snapshot extension registration failed   peer=5c08a3d9 err="peer connected on snap without compatible eth support"
+INFO [07-18|15:44:42.049] Looking for peers                        peercount=1 tried=41 static=0
+INFO [07-18|15:44:52.201] Looking for peers                        peercount=1 tried=33 static=0
+WARN [07-18|15:44:57.709] Synchronisation failed, dropping peer    peer=fa19e31ddc26d0706aded022967ddd96c5034cefdc0fc382e6f58ca2aaff91d4 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:45:02.990] Looking for peers                        peercount=1 tried=24 static=0
+WARN [07-18|15:45:07.825] Synchronisation failed, dropping peer    peer=c542baf283386868d20135d5c08ba993e9f8c7c026bcb8d8f39e23a2d53cfc69 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:45:13.291] Looking for peers                        peercount=0 tried=24 static=0
+INFO [07-18|15:45:23.359] Looking for peers                        peercount=0 tried=56 static=0
+WARN [07-18|15:45:23.976] Synchronisation failed, dropping peer    peer=c542baf283386868d20135d5c08ba993e9f8c7c026bcb8d8f39e23a2d53cfc69 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:45:33.399] Looking for peers                        peercount=1 tried=40 static=0
+WARN [07-18|15:45:37.091] Synchronisation failed, dropping peer    peer=fa19e31ddc26d0706aded022967ddd96c5034cefdc0fc382e6f58ca2aaff91d4 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:45:43.468] Looking for peers                        peercount=2 tried=35 static=0
+INFO [07-18|15:45:53.470] Looking for peers                        peercount=2 tried=26 static=0
+WARN [07-18|15:45:57.014] Snapshot extension registration failed   peer=632a36f0 err="peer connected on snap without compatible eth support"
+INFO [07-18|15:46:03.470] Looking for peers                        peercount=4 tried=53 static=0
+INFO [07-18|15:46:14.136] Looking for peers                        peercount=4 tried=14 static=0
+WARN [07-18|15:46:29.945] Snapshot extension registration failed   peer=76804bfd err="peer connected on snap without compatible eth support"
+INFO [07-18|15:46:34.474] Looking for peers                        peercount=3 tried=35 static=0
+INFO [07-18|15:46:45.250] Looking for peers                        peercount=4 tried=35 static=0
+WARN [07-18|15:46:47.204] Synchronisation failed, dropping peer    peer=a7788d5bfb661531cccfc07570130d22c07593537b1bda6a8ad6d84af8f14e3e err=timeout
+INFO [07-18|15:46:55.308] Looking for peers                        peercount=6 tried=38 static=0
+INFO [07-18|15:47:05.391] Looking for peers                        peercount=3 tried=31 static=0
+INFO [07-18|15:47:15.400] Looking for peers                        peercount=3 tried=35 static=0
+INFO [07-18|15:47:25.401] Looking for peers                        peercount=2 tried=36 static=0
+INFO [07-18|15:47:35.401] Looking for peers                        peercount=2 tried=38 static=0
+INFO [07-18|15:47:45.402] Looking for peers                        peercount=2 tried=33 static=0
+WARN [07-18|15:47:51.992] Synchronisation failed, dropping peer    peer=de76c1da34ecf0f054bc0c8adf4c18f9c113ca14023459df8ee7d71f4a578e9c err=timeout
+INFO [07-18|15:47:55.480] Looking for peers                        peercount=2 tried=24 static=0
+WARN [07-18|15:48:05.107] Synchronisation failed, dropping peer    peer=fa19e31ddc26d0706aded022967ddd96c5034cefdc0fc382e6f58ca2aaff91d4 err="action from bad peer ignored: returned headers 0 != requested 1"
+INFO [07-18|15:48:05.733] Looking for peers                        peercount=3 tried=50 static=0
+INFO [07-18|15:48:16.017] Looking for peers                        peercount=5 tried=43 static=0
+WARN [07-18|15:48:19.133] Checkpoint challenge timed out, dropping id=fd8c8ff5f1164af9 conn=inbound addr=3.66.140.34:45256 type=
+INFO [07-18|15:48:26.070] Looking for peers                        peercount=3 tried=32 static=0
+INFO [07-18|15:48:36.071] Looking for peers                        peercount=4 tried=42 static=0
+INFO [07-18|15:48:46.072] Looking for peers                        peercount=4 tried=33 static=0
+INFO [07-18|15:48:56.405] Looking for peers                        peercount=6 tried=12 static=0
+INFO [07-18|15:49:06.408] Looking for peers                        peercount=6 tried=53 static=0
+WARN [07-18|15:49:13.941] Synchronisation failed, dropping peer    peer=47ee813d59e7eb030097bed9a3d171d3e4f541785e04bd1e24c2f5c5ce025505 err=timeout
+WARN [07-18|15:49:14.221] Snapshot extension registration failed   peer=ba83bd0f err="peer connected on snap without compatible eth support"
+WARN [07-18|15:49:42.608] Snapshot extension registration failed   peer=04dfa983 err="peer connected on snap without compatible eth support"
+INFO [07-18|15:49:46.995] Looking for peers                        peercount=8 tried=40 static=0
+INFO [07-18|15:49:56.995] Looking for peers                        peercount=9 tried=42 static=0
+INFO [07-18|15:50:07.327] Looking for peers                        peercount=9 tried=39 static=0
+WARN [07-18|15:50:14.051] Synchronisation failed, dropping peer    peer=302e88cf2fba4a6de2ec13bb056aa5c8b1ea4edb3aeaefdff4da036fcda0ce26 err=timeout
+INFO [07-18|15:50:17.328] Looking for peers                        peercount=8 tried=32 static=0
+INFO [07-18|15:50:27.714] Looking for peers                        peercount=9 tried=22 static=0
+INFO [07-18|15:50:37.729] Looking for peers                        peercount=8 tried=42 static=0
+WARN [07-18|15:50:40.105] Snapshot extension registration failed   peer=c85be8b4 err="peer connected on snap without compatible eth support"
+INFO [07-18|15:50:47.898] Looking for peers                        peercount=9 tried=28 static=0

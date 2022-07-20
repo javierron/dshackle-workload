@@ -1,0 +1,128 @@
+[
+    {
+        "method": "eth_blockNumber",
+        "percentage-1": 0.9465696466,
+        "percentage-2": 0.897229115,
+        "percentage-3": 0.895086046
+    },
+    {
+        "method": "eth_estimateGas",
+        "percentage-1": 0.9441732116,
+        "percentage-2": 0.9020305631,
+        "percentage-3": 0.8938256154
+    },
+    {
+        "method": "eth_feeHistory",
+        "percentage-1": 0.946031746,
+        "percentage-2": 0.9001867607,
+        "percentage-3": 0.8934042553
+    },
+    {
+        "method": "eth_gasPrice",
+        "percentage-1": 0.946031746,
+        "percentage-2": 0.8983516484,
+        "percentage-3": 0.8836325238
+    },
+    {
+        "method": "eth_getBalance",
+        "percentage-1": 0.954192229,
+        "percentage-2": 0.8961611076,
+        "percentage-3": 0.8866396761
+    },
+    {
+        "method": "eth_getBlockByHash",
+        "percentage-1": 0.9543284202,
+        "percentage-2": 0.9030008453,
+        "percentage-3": 0.894604241
+    },
+    {
+        "method": "eth_getBlockByNumber",
+        "percentage-1": 0.9482283047,
+        "percentage-2": 0.8977272727,
+        "percentage-3": 0.891925725
+    },
+    {
+        "method": "eth_getBlockTransactionCountByHash",
+        "percentage-1": 0.9474012474,
+        "percentage-2": 0.8944680851,
+        "percentage-3": 0.8869379015
+    },
+    {
+        "method": "eth_getBlockTransactionCountByNumber",
+        "percentage-1": 0.9507647182,
+        "percentage-2": 0.8921832884,
+        "percentage-3": 0.8925330033
+    },
+    {
+        "method": "eth_getCode",
+        "percentage-1": 0.948712492,
+        "percentage-2": 0.8949359109,
+        "percentage-3": 0.8915534805
+    },
+    {
+        "method": "eth_getLogs",
+        "percentage-1": 0.95374868,
+        "percentage-2": 0.8993778159,
+        "percentage-3": 0.8950591216
+    },
+    {
+        "method": "eth_getStorageAt",
+        "percentage-1": 0.9459974587,
+        "percentage-2": 0.9007903494,
+        "percentage-3": 0.8851920312
+    },
+    {
+        "method": "eth_getTransactionByBlockHashAndIndex",
+        "percentage-1": 0.9489451477,
+        "percentage-2": 0.8980408679,
+        "percentage-3": 0.8938464792
+    },
+    {
+        "method": "eth_getTransactionByBlockNumberAndIndex",
+        "percentage-1": 0.9457118716,
+        "percentage-2": 0.896330085,
+        "percentage-3": 0.8926399664
+    },
+    {
+        "method": "eth_getTransactionByHash",
+        "percentage-1": 0.9457512185,
+        "percentage-2": 0.9031716026,
+        "percentage-3": 0.8902620925
+    },
+    {
+        "method": "eth_getTransactionCount",
+        "percentage-1": 0.9435432905,
+        "percentage-2": 0.9016677496,
+        "percentage-3": 0.8916807432
+    },
+    {
+        "method": "eth_getTransactionReceipt",
+        "percentage-1": 0.9415517596,
+        "percentage-2": 0.8984813813,
+        "percentage-3": 0.8836022054
+    },
+    {
+        "method": "eth_getUncleByBlockHashAndIndex",
+        "percentage-1": 0.9488817891,
+        "percentage-2": 0.9017267107,
+        "percentage-3": 0.8847280335
+    },
+    {
+        "method": "eth_getUncleByBlockNumberAndIndex",
+        "percentage-1": 0.9477518734,
+        "percentage-2": 0.8932572395,
+        "percentage-3": 0.8835178876
+    },
+    {
+        "method": "eth_getUncleCountByBlockHash",
+        "percentage-1": 0.9433403805,
+        "percentage-2": 0.9002752488,
+        "percentage-3": 0.8902748414
+    },
+    {
+        "method": "eth_getUncleCountByBlockNumber",
+        "percentage-1": 0.948574969,
+        "percentage-2": 0.8924886504,
+        "percentage-3": 0.8918080265
+    }
+]

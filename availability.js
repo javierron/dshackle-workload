@@ -7,10 +7,9 @@ const { stringify } = require('querystring');
 require('toml-require').install();
 const debug = require('./config.toml').debug
 
-const debugPrint = str => {
-  if (debug) {
-    console.log(str)
-  }
+const logWithTime = str => {
+  const time = Math.floor(Date.now() / 1000)  
+  console.log(`[${time}] ${str}`)
 }
 
 const getRandomInt = max => {
@@ -107,7 +106,7 @@ const sendRequest = (target, requestPayload, file, k) => {
           if (file) {
             if (responseJson.result.number) {
               const clientBlockNumber = Number(responseJson.result.number)
-              // console.log(`response number ${clientBlockNumber} vs etherscan number ${blockNumber}`)
+              // logWithTime(`response number ${clientBlockNumber} vs etherscan number ${blockNumber}`)
               const distance = Math.abs(parseInt(clientBlockNumber) - blockNumber)
               const timestamp = Math.floor(Date.now() / 1000)
               file.write(`${timestamp},${requestPayload.method},${res.statusCode},payload-ok,${distance}\n`)
@@ -175,7 +174,7 @@ const availabilityStandalone = async length => {
 
   const waitTime = 15 * 60 * 1000 // 15 min
 
-  console.log('Starting experiment')
+  logWithTime('Starting experiment')
 
   for (var i = 0; i < clients.length; i++) {
 
@@ -190,12 +189,12 @@ const availabilityStandalone = async length => {
     var pid = targetProcess.pid
 
     if (!pid) {
-      console.log(`could not start ${target.name}`)
+      logWithTime(`could not start ${target.name}`)
       exit()
     }
-    console.log(`spawned ${target.name} with pid ${pid}`)
+    logWithTime(`spawned ${target.name} with pid ${pid}`)
 
-    console.log(`waiting ${waitTime / 1000} seconds for sync`)
+    logWithTime(`waiting ${waitTime / 1000} seconds for sync`)
     await new Promise(resolve => setTimeout(resolve, waitTime));
 
     var chaosethArgs = [
@@ -205,13 +204,13 @@ const availabilityStandalone = async length => {
     var chaoseth = spawn('sudo', ['/home/javier/royal-chaos/chaoseth/syscall_injector.py', ...chaosethArgs])
     chaoseth.stdout.pipe(injectorLogStream)
     chaoseth.stderr.pipe(injectorLogStream)
-    console.log(`attaching ChaosETH to ${target.name} with pid ${pid}, error model ${target.error_model}`)
+    logWithTime(`attaching ChaosETH to ${target.name} with pid ${pid}, error model ${target.error_model}`)
 
     //run workload
     const file = fs.createWriteStream(`./data/${target.name}/${idx}/availability-${target.name}.csv`)
     for (var k = 0; k < length; k++) {
       const data = requests[getRandomInt(requests.length)]
-      await sendRequest(target.name, data, file, k).then(debugPrint)
+      await sendRequest(target.name, data, file, k).then(logWithTime)
 
 
       var stat_failed = false
@@ -230,7 +229,7 @@ const availabilityStandalone = async length => {
         var logStream = fs.createWriteStream(`./data/${target.name}/${idx}/${target.name}.log`, { flags: 'a' });
         var injectorLogStream = fs.createWriteStream(`./data/${target.name}/${idx}/${target.name}-injector.log`, { flags: 'a' });
 
-        console.log('restarting client...')
+        logWithTime('restarting client...')
         targetProcess.kill('SIGKILL')
         spawn('sudo', ['pkill', '-9', 'syscall_inj'])
 
@@ -244,12 +243,12 @@ const availabilityStandalone = async length => {
         pid = targetProcess.pid
 
         if (!pid) {
-          console.log('Failed to restart client')
+          logWithTime('Failed to restart client')
         }
 
-        console.log(`waiting ${waitTime / 1000} seconds for sync`)
+        logWithTime(`waiting ${waitTime / 1000} seconds for sync`)
         await new Promise(resolve => setTimeout(resolve, waitTime));
-        console.log('DONE!')
+        logWithTime('DONE!')
 
 
         chaosethArgs = [
@@ -260,7 +259,7 @@ const availabilityStandalone = async length => {
         chaoseth = spawn('sudo', [`/home/javier/royal-chaos/chaoseth/syscall_injector.py`, ...chaosethArgs])
 
         if (!chaoseth.pid) {
-          console.log('Failed to reattach chaoseth')
+          logWithTime('Failed to reattach chaoseth')
         }
 
         chaoseth.stdout.pipe(injectorLogStream)
@@ -275,7 +274,7 @@ const availabilityStandalone = async length => {
 
     logStream.close()
     injectorLogStream.close()
-    console.log(`waiting 30 seconds for cleanup`)
+    logWithTime(`waiting 30 seconds for cleanup`)
     await new Promise(resolve => setTimeout(resolve, 30 * 1000));
   }
 }
@@ -301,7 +300,7 @@ const doRequests = async name => {
   //if stop return
   while (!stop) {
     //request
-    sendRequest(target.name, data, file, 0).then(debugPrint)
+    sendRequest(target.name, data, file, 0).then(logWithTime)
 
     //wait 200 ms
     await new Promise(resolve => setTimeout(resolve, 200));
@@ -312,12 +311,15 @@ const doRequests = async name => {
 const getLatestBlockNumber = async () => {
   while (!stop) {
     const time = Math.floor(Date.now() / 1000)
-    console.log(`TIME: ${time}`)
+    logWithTime(`TIME: ${time}`)
+
+
+    const apiKey = process.env["API_KEY"]
 
     const options = {
       hostname: 'api.etherscan.io',
       port: '80',
-      path: `/api?module=block&action=getblocknobytime&timestamp=${time}&closest=before&apikey=<ETHERSCAN_API_KEY>`
+      path: `/api?module=block&action=getblocknobytime&timestamp=${time}&closest=before&apikey=${apiKey}>`
     }
 
     //request to etherscan
@@ -330,7 +332,7 @@ const getLatestBlockNumber = async () => {
 
       res.on('end', () => {
         const responseJson = JSON.parse(responseStr)
-        console.log(`Etherscan resp: ${responseStr}`)
+        logWithTime(`Etherscan resp: ${responseStr}`)
         blockNumber = parseInt(responseJson.result)
       })
     })
@@ -345,7 +347,7 @@ const getLatestBlockNumber = async () => {
 const spawnAndCheckforCrash = async name => {
   const spawnWaitTime = 30 * 1000 // 1 min
 
-  console.log('Starting experiment')
+  logWithTime('Starting experiment')
 
   //spawn attach
   const target = clients.filter(c => c.name == name)[0] // find target by name
@@ -358,13 +360,13 @@ const spawnAndCheckforCrash = async name => {
   var pid = targetProcess.pid
 
   if (!pid) {
-    console.log(`could not start ${target.name}`)
+    logWithTime(`could not start ${target.name}`)
     exit()
   }
-  console.log(`spawned ${target.name} with pid ${pid}`)
+  logWithTime(`spawned ${target.name} with pid ${pid}`)
 
   const firstStart = spawnWaitTime * 60 * 2 // two hour sync at startup
-  console.log(`waiting ${firstStart / 1000} seconds for startup`)
+  logWithTime(`waiting ${firstStart / 1000} seconds for startup`)
   await new Promise(resolve => setTimeout(resolve, firstStart));
 
   var chaosethArgs = [
@@ -374,7 +376,7 @@ const spawnAndCheckforCrash = async name => {
   var chaoseth = spawn('sudo', ['/home/javier/royal-chaos/chaoseth/syscall_injector.py', ...chaosethArgs])
   chaoseth.stdout.pipe(injectorLogStream)
   chaoseth.stderr.pipe(injectorLogStream)
-  console.log(`attaching ChaosETH to ${target.name} with pid ${pid}, error model ${target.error_model}`)
+  logWithTime(`attaching ChaosETH to ${target.name} with pid ${pid}, error model ${target.error_model}`)
 
   //if crash or non-response
   //spawn attach
@@ -394,7 +396,7 @@ const spawnAndCheckforCrash = async name => {
       var logStream = fs.createWriteStream(`./data/${target.name}/time/${idx}/${target.name}.log`, { flags: 'a' });
       var injectorLogStream = fs.createWriteStream(`./data/${target.name}/time/${idx}/${target.name}-injector.log`, { flags: 'a' });
 
-      console.log('restarting client...')
+      logWithTime('restarting client...')
       targetProcess.kill('SIGKILL')
       spawn('sudo', ['pkill', '-9', 'syscall_inj'])
 
@@ -408,12 +410,12 @@ const spawnAndCheckforCrash = async name => {
       pid = targetProcess.pid
 
       if (!pid) {
-        console.log('Failed to restart client')
+        logWithTime('Failed to restart client')
       }
 
-      console.log(`waiting ${spawnWaitTime / 1000} seconds for startup`)
+      logWithTime(`waiting ${spawnWaitTime / 1000} seconds for startup`)
       await new Promise(resolve => setTimeout(resolve, spawnWaitTime));
-      console.log('DONE!')
+      logWithTime('DONE!')
 
 
       chaosethArgs = [
@@ -424,7 +426,7 @@ const spawnAndCheckforCrash = async name => {
       chaoseth = spawn('sudo', [`/home/javier/royal-chaos/chaoseth/syscall_injector.py`, ...chaosethArgs])
 
       if (!chaoseth.pid) {
-        console.log('Failed to reattach chaoseth')
+        logWithTime('Failed to reattach chaoseth')
       }
 
       chaoseth.stdout.pipe(injectorLogStream)
@@ -442,7 +444,7 @@ const spawnAndCheckforCrash = async name => {
 
   logStream.close()
   injectorLogStream.close()
-  console.log(`waiting 30 seconds for cleanup`)
+  logWithTime(`waiting 30 seconds for cleanup`)
   await new Promise(resolve => setTimeout(resolve, 30 * 1000));
 }
 
@@ -473,7 +475,7 @@ const availabilityDshackle = async length => {
   const errorModel = JSON.parse(errorModelStr)
   const waitTime = 60 * 1000 // 60 sec
 
-  console.log('Starting experiment')
+  logWithTime('Starting experiment')
 
   //for each error model
   const errorModels = errorModel.experiments
@@ -484,28 +486,28 @@ const availabilityDshackle = async length => {
     const pids = []
     for (var i = 0; i < clients.length; i++) {
       const client = clients[i]
-      console.log(client.name)
+      logWithTime(client.name)
 
 
       const clientProcess = spawn(`${client.path}/${client.cmd}`, client.args)
 
       if (!clientProcess.pid) {
-        console.log(`could not start ${client.name}`)
+        logWithTime(`could not start ${client.name}`)
         exit()
       }
-      console.log(`spawned ${client.name} with pid ${clientProcess.pid}`)
+      logWithTime(`spawned ${client.name} with pid ${clientProcess.pid}`)
 
       processes.push(clientProcess)
       pids.push(clientProcess.pid)
     }
 
-    console.log(`waiting ${waitTime / 1000} seconds for sync`)
+    logWithTime(`waiting ${waitTime / 1000} seconds for sync`)
     await new Promise(resolve => setTimeout(resolve, waitTime));
 
     //spawn dshackle
     const dshackleProc = spawn(dshackle.cmd, dshackle.args)
 
-    console.log(`waiting ${waitTime / 1000} seconds for dshackle startup`)
+    logWithTime(`waiting ${waitTime / 1000} seconds for dshackle startup`)
     await new Promise(resolve => setTimeout(resolve, waitTime));
 
     const errorModel = errorModels[j]
@@ -518,13 +520,13 @@ const availabilityDshackle = async length => {
     const chaoseth = spawn(`/home/javier/royal-chaos/chaoseth/syscall_injector.py`, chaosethArgs,
       { stdio: [process.stdin, process.stdout, process.stderr] })
     const errorModelStr = `${errorModel.syscall_name}-${errorModel.error_code}-${errorModel.failure_rate}`
-    console.log(`attaching ChaosETH to pids ${pids}, error model ${errorModelStr}`)
+    logWithTime(`attaching ChaosETH to pids ${pids}, error model ${errorModelStr}`)
 
     //run workload
     const file = fs.createWriteStream(`./data/availability-dshackle-${errorModelStr}.csv`)
     for (var k = 0; k < length; k++) {
       const data = requests[getRandomInt(requests.length)]
-      await sendRequest('dshackle', data, file, k).then(debugPrint)
+      await sendRequest('dshackle', data, file, k).then(logWithTime)
 
       // await statPid(pid).catch(_ => {
       //   file.write('CRASH!\n')
@@ -540,7 +542,7 @@ const availabilityDshackle = async length => {
     // dshackleProc.kill('SIGKILL')
     spawn(dshackle_remove.cmd, dshackle_remove.args)
 
-    console.log(`waiting 30 seconds for cleanup`)
+    logWithTime(`waiting 30 seconds for cleanup`)
     await new Promise(resolve => setTimeout(resolve, 30 * 1000));
   }
 }
